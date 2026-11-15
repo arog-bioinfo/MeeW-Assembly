@@ -1,0 +1,2 @@
+sample	assembly_type	short_read1	short_read2	long_reads	long_read_type
+hybrid_sample	hybrid	data/hybrid_sample_R1.fastq	data/hybrid_sample_R2.fastq	data/hybrid_sample_long.fastq	pacbio-raw

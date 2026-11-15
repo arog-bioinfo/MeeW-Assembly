@@ -1,0 +1,7 @@
+sample_sheet: "config/samples.long-nanopore.tsv"
+genome_context: "metagenome"
+flye_threads: 2
+quast_threads: 2
+quast_extra: "-r results/long_sample/assembly-flye/assembly.fasta --fast"
+minimap2_threads: 2
+minimap2_extra: ""

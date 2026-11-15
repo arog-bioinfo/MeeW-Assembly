@@ -1,0 +1,73 @@
+# ====================
+# Workflow Input
+# ====================
+
+# --------------------
+# Sample Sheet
+# --------------------
+sample_sheet: "config/samples.tsv"
+
+# ====================
+# Execution Resources
+# ====================
+
+# --------------------
+# Tool Threads
+# --------------------
+metaspades_threads: 4
+flye_threads: 4
+quast_threads: 2
+bwamem2_threads: 4
+minimap2_threads: 4
+
+# --------------------
+# Tool Memory
+# --------------------
+metaspades_memory_gb: 110
+
+# ====================
+# Assembly
+# ====================
+
+genome_context: "metagenome"
+
+# --------------------
+# Short-Read Assembly (metaSPAdes)
+# --------------------
+metaspades_kmers: "auto"
+metaspades_extra: ""
+
+# --------------------
+# Long-Read Assembly (Flye)
+# --------------------
+# TODO: #2 Extend flye and minimap configuration options
+flye_extra: ""
+
+# ====================
+# Assembly Quality Assessment
+# ====================
+
+# --------------------
+# QUAST
+# --------------------
+quast_min_contig: 500
+quast_min_identity: 95.0
+quast_extra: ""
+
+# ====================
+# Read Mapping
+# ====================
+
+# --------------------
+# Short-Read Mapping (BWA-MEM2)
+# --------------------
+bwamem2_index_extra: ""
+bwamem2_mem_extra: ""
+bwamem2_sort: "samtools"
+bwamem2_sort_order: "coordinate"
+bwamem2_sort_extra: ""
+
+# --------------------
+# Long-Read Mapping (Minimap2)
+# --------------------
+minimap2_extra: ""

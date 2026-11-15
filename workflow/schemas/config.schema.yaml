@@ -1,0 +1,72 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+type: object
+properties:
+  sample_sheet:
+    type: string
+    minLength: 1
+    pattern: "\\S"
+    description: Path to a sample sheet containing exactly one sample row; environment variables and ~ are expanded, while relative paths use the Snakemake working directory.
+  genome_context:
+    type: string
+    enum: [metagenome, isolate]
+    description: Genome context used to derive SPAdes, Flye, and QUAST behavior.
+  metaspades_threads:
+    type: integer
+    minimum: 1
+  metaspades_memory_gb:
+    type: integer
+    minimum: 1
+  flye_threads:
+    type: integer
+    minimum: 1
+  quast_threads:
+    type: integer
+    minimum: 1
+  bwamem2_threads:
+    type: integer
+    minimum: 1
+  minimap2_threads:
+    type: integer
+    minimum: 1
+  metaspades_extra:
+    type: string
+  metaspades_kmers:
+    type: string
+  flye_extra:
+    type: string
+  quast_min_contig:
+    type: integer
+  quast_min_identity:
+    type: number
+  quast_extra:
+    type: string
+  bwamem2_index_extra:
+    type: string
+  bwamem2_mem_extra:
+    type: string
+  bwamem2_sort:
+    type: string
+    enum: [samtools, picard]
+    default: samtools
+    description: Sorting engine for the coordinate-sorted short/hybrid BWA-MEM2 BAM.
+  bwamem2_sort_order:
+    type: string
+    enum: [coordinate]
+    default: coordinate
+    description: Sort order for the short/hybrid BWA-MEM2 BAM; only coordinate order is supported so the BAM can be indexed for Binning.
+  bwamem2_sort_extra:
+    type: string
+  minimap2_extra:
+    type: string
+    description: Additional trusted minimap2 arguments for long assemblies; the -x preset is derived automatically from long_read_type and must not be supplied here.
+allOf:
+  - not:
+      required: [metaspades_meta]
+  - not:
+      required: [quast_mode]
+  - not:
+      required: [stage_sheets]
+required:
+  - sample_sheet
+  - genome_context
+additionalProperties: true

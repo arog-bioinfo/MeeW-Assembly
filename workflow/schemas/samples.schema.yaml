@@ -1,0 +1,78 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+description: Exactly one Assembly sample row per run.
+type: object
+properties:
+  sample:
+    type: string
+    minLength: 1
+    maxLength: 128
+    pattern: ^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$
+    not:
+      pattern: "[^A-Za-z0-9._-]"
+  assembly_type:
+    type: string
+    enum: [short, long, hybrid]
+  short_read1:
+    type: string
+    description: Input path supporting environment variables and ~; relative paths use the Snakemake working directory.
+  short_read2:
+    type: string
+    description: Input path supporting environment variables and ~; relative paths use the Snakemake working directory.
+  long_reads:
+    type: string
+    description: Input path supporting environment variables and ~; relative paths use the Snakemake working directory.
+  long_read_type:
+    type: string
+    enum:
+      ["", nano-raw, nano-corr, nano-hq, pacbio-raw, pacbio-corr, pacbio-hifi]
+required:
+  - sample
+  - assembly_type
+  - short_read1
+  - short_read2
+  - long_reads
+  - long_read_type
+additionalProperties: false
+allOf:
+  - if:
+      properties:
+        assembly_type:
+          const: short
+    then:
+      properties:
+        short_read1:
+          minLength: 1
+        short_read2:
+          minLength: 1
+        long_reads:
+          maxLength: 0
+        long_read_type:
+          maxLength: 0
+  - if:
+      properties:
+        assembly_type:
+          const: long
+    then:
+      properties:
+        short_read1:
+          maxLength: 0
+        short_read2:
+          maxLength: 0
+        long_reads:
+          minLength: 1
+        long_read_type:
+          minLength: 1
+  - if:
+      properties:
+        assembly_type:
+          const: hybrid
+    then:
+      properties:
+        short_read1:
+          minLength: 1
+        short_read2:
+          minLength: 1
+        long_reads:
+          minLength: 1
+        long_read_type:
+          minLength: 1

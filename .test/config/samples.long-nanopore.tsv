@@ -1,0 +1,2 @@
+sample	assembly_type	short_read1	short_read2	long_reads	long_read_type
+long_sample	long			data/long_sample.fastq	nano-raw

@@ -1,0 +1,10 @@
+sample_sheet: "config/samples.hybrid-pacbio.tsv"
+genome_context: "metagenome"
+metaspades_threads: 2
+metaspades_memory_gb: 4
+metaspades_extra: "--phred-offset 33"
+quast_threads: 2
+quast_min_contig: 200
+quast_extra: "-r results/hybrid_sample/assembly-spades/assembly.fasta --fast"
+bwamem2_threads: 2
+minimap2_extra: ""

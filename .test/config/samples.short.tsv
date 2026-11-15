@@ -1,0 +1,2 @@
+sample	assembly_type	short_read1	short_read2	long_reads	long_read_type
+short_sample	 Short 	data/short_sample_R1.fastq	data/short_sample_R2.fastq		
